@@ -1,0 +1,1221 @@
+[
+  {
+    "id": "favicon",
+    "url": "/assets/images/favicon.png",
+    "title": "favicon",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      },
+      {
+        "path": "/services/express",
+        "title": "Express Courier Delivery — 3A Logistics"
+      },
+      {
+        "path": "/services/business",
+        "title": "Business & Corporate Shipping — 3A Logistics"
+      },
+      {
+        "path": "/services/logistics",
+        "title": "Logistics Solutions & Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      },
+      {
+        "path": "/careers",
+        "title": "Careers & Opportunities — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      },
+      {
+        "path": "/quote",
+        "title": "Request a Shipping Quote"
+      },
+      {
+        "path": "/404",
+        "title": "Page not found"
+      }
+    ]
+  },
+  {
+    "id": "logo",
+    "url": "/assets/optimized/logo.webp",
+    "title": "logo",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      },
+      {
+        "path": "/services/express",
+        "title": "Express Courier Delivery — 3A Logistics"
+      },
+      {
+        "path": "/services/business",
+        "title": "Business & Corporate Shipping — 3A Logistics"
+      },
+      {
+        "path": "/services/logistics",
+        "title": "Logistics Solutions & Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      },
+      {
+        "path": "/careers",
+        "title": "Careers & Opportunities — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      },
+      {
+        "path": "/quote",
+        "title": "Request a Shipping Quote"
+      },
+      {
+        "path": "/404",
+        "title": "Page not found"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Main hero",
+        "anchor": "hero-title"
+      }
+    ]
+  },
+  {
+    "id": "hero-motion-background",
+    "url": "/assets/images/hero-motion-background.webp",
+    "title": "hero motion background",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Main hero",
+        "anchor": "hero-title"
+      },
+      {
+        "page": "/services",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/services/domestic",
+        "section": "Page banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "hero-motion-plane",
+    "url": "/assets/images/hero-motion-plane.webp",
+    "title": "hero motion plane",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Main hero",
+        "anchor": "hero-title"
+      },
+      {
+        "page": "/services",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/coverage",
+        "section": "Page banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "hero-motion-truck",
+    "url": "/assets/images/hero-motion-truck.webp",
+    "title": "hero motion truck",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Main hero",
+        "anchor": "hero-title"
+      },
+      {
+        "page": "/services/domestic",
+        "section": "Page banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-fedex",
+    "url": "/assets/optimized/service-fedex.webp",
+    "title": "service fedex",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Services & shipping",
+        "anchor": "services-title"
+      },
+      {
+        "page": "/services",
+        "section": "Shipping, around you.",
+        "anchor": ""
+      },
+      {
+        "page": "/services",
+        "section": "Familiar names. Personal guidance.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/international",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/services/international",
+        "section": "Connect through established courier services.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-self-express",
+    "url": "/assets/optimized/service-self-express.webp",
+    "title": "service self express",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Services & shipping",
+        "anchor": "services-title"
+      },
+      {
+        "page": "/services",
+        "section": "Shipping, around you.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-dhl",
+    "url": "/assets/optimized/service-dhl.webp",
+    "title": "service dhl",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      },
+      {
+        "path": "/services/express",
+        "title": "Express Courier Delivery — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Services & shipping",
+        "anchor": "services-title"
+      },
+      {
+        "page": "/services",
+        "section": "Familiar names. Personal guidance.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/international",
+        "section": "Connect through established courier services.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/express",
+        "section": "Fast starts with preparation.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-medicine",
+    "url": "/assets/optimized/service-medicine.webp",
+    "title": "service medicine",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Services & shipping",
+        "anchor": "services-title"
+      }
+    ]
+  },
+  {
+    "id": "shipping-scene-clean",
+    "url": "/assets/optimized/shipping-scene-clean.webp",
+    "title": "shipping scene clean",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Services & shipping",
+        "anchor": "services-title"
+      }
+    ]
+  },
+  {
+    "id": "about-scene-clean",
+    "url": "/assets/optimized/about-scene-clean.webp",
+    "title": "about scene clean",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/careers",
+        "title": "Careers & Opportunities — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Our story",
+        "anchor": "who-we-are"
+      },
+      {
+        "page": "/about",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/careers",
+        "section": "Page banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "process-scene-clean",
+    "url": "/assets/optimized/process-scene-clean.webp",
+    "title": "process scene clean",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services/express",
+        "title": "Express Courier Delivery — 3A Logistics"
+      },
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "How it works",
+        "anchor": "process-title"
+      },
+      {
+        "page": "/services/express",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/industries",
+        "section": "Page banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "hero-background",
+    "url": "/assets/optimized/hero-background.webp",
+    "title": "hero background",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Our network",
+        "anchor": "network-title"
+      }
+    ]
+  },
+  {
+    "id": "customer-scene-clean",
+    "url": "/assets/optimized/customer-scene-clean.webp",
+    "title": "customer scene clean",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      },
+      {
+        "page": "/contact",
+        "section": "Page banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "avatar-vivek",
+    "url": "/assets/optimized/avatar-vivek.webp",
+    "title": "avatar vivek",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "avatar-pratham",
+    "url": "/assets/optimized/avatar-pratham.webp",
+    "title": "avatar pratham",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "avatar-ranjani",
+    "url": "/assets/optimized/avatar-ranjani.webp",
+    "title": "avatar ranjani",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "avatar-suraj",
+    "url": "/assets/optimized/avatar-suraj.webp",
+    "title": "avatar suraj",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "avatar-pooja",
+    "url": "/assets/optimized/avatar-pooja.webp",
+    "title": "avatar pooja",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "avatar-devi",
+    "url": "/assets/optimized/avatar-devi.webp",
+    "title": "avatar devi",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "avatar-aaditya",
+    "url": "/assets/optimized/avatar-aaditya.webp",
+    "title": "avatar aaditya",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Customer stories",
+        "anchor": "stories-title"
+      }
+    ]
+  },
+  {
+    "id": "closing-reference-scene",
+    "url": "/assets/optimized/closing-reference-scene.webp",
+    "title": "closing reference scene",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/services/business",
+        "title": "Business & Corporate Shipping — 3A Logistics"
+      },
+      {
+        "path": "/services/logistics",
+        "title": "Logistics Solutions & Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/quote",
+        "title": "Request a Shipping Quote"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/",
+        "section": "Closing banner",
+        "anchor": "closing-title"
+      },
+      {
+        "page": "/services/business",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/services/logistics",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/coverage",
+        "section": "Page banner",
+        "anchor": ""
+      },
+      {
+        "page": "/quote",
+        "section": "Quote banner",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "pickup-visual",
+    "url": "/assets/optimized/pickup-visual.webp",
+    "title": "pickup visual",
+    "pages": [
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/about",
+        "section": "Clarity is part of the delivery.",
+        "anchor": ""
+      },
+      {
+        "page": "/services",
+        "section": "Shipping, around you.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "mumbai",
+    "url": "/assets/optimized/mumbai.webp",
+    "title": "mumbai",
+    "pages": [
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/about",
+        "section": "Based in India. Thinking beyond borders.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/domestic",
+        "section": "Talk to a team closer to you.",
+        "anchor": ""
+      },
+      {
+        "page": "/coverage",
+        "section": "A global network. A local conversation.",
+        "anchor": ""
+      },
+      {
+        "page": "/contact",
+        "section": "Our offices. Your connection to the world.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "bangalore",
+    "url": "/assets/optimized/bangalore.webp",
+    "title": "bangalore",
+    "pages": [
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/about",
+        "section": "Based in India. Thinking beyond borders.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/domestic",
+        "section": "Talk to a team closer to you.",
+        "anchor": ""
+      },
+      {
+        "page": "/coverage",
+        "section": "A global network. A local conversation.",
+        "anchor": ""
+      },
+      {
+        "page": "/contact",
+        "section": "Our offices. Your connection to the world.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "delhi",
+    "url": "/assets/optimized/delhi.webp",
+    "title": "delhi",
+    "pages": [
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/about",
+        "section": "Based in India. Thinking beyond borders.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/domestic",
+        "section": "Talk to a team closer to you.",
+        "anchor": ""
+      },
+      {
+        "page": "/coverage",
+        "section": "A global network. A local conversation.",
+        "anchor": ""
+      },
+      {
+        "page": "/contact",
+        "section": "Our offices. Your connection to the world.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "bengaluru",
+    "url": "/assets/optimized/bengaluru.webp",
+    "title": "bengaluru",
+    "pages": [
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/about",
+        "section": "Based in India. Thinking beyond borders.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/domestic",
+        "section": "Talk to a team closer to you.",
+        "anchor": ""
+      },
+      {
+        "page": "/coverage",
+        "section": "A global network. A local conversation.",
+        "anchor": ""
+      },
+      {
+        "page": "/contact",
+        "section": "Our offices. Your connection to the world.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-ups",
+    "url": "/assets/optimized/service-ups.webp",
+    "title": "service ups",
+    "pages": [
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/services",
+        "section": "Shipping, around you.",
+        "anchor": ""
+      },
+      {
+        "page": "/services",
+        "section": "Familiar names. Personal guidance.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/international",
+        "section": "Connect through established courier services.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-self-economy",
+    "url": "/assets/optimized/service-self-economy.webp",
+    "title": "service self economy",
+    "pages": [
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/services",
+        "section": "Shipping, around you.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "service-aramex",
+    "url": "/assets/optimized/service-aramex.webp",
+    "title": "service aramex",
+    "pages": [
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/services",
+        "section": "Familiar names. Personal guidance.",
+        "anchor": ""
+      },
+      {
+        "page": "/services/international",
+        "section": "Connect through established courier services.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "furniture",
+    "url": "/assets/optimized/furniture.webp",
+    "title": "furniture",
+    "pages": [
+      {
+        "path": "/services/logistics",
+        "title": "Logistics Solutions & Enquiries — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/services/logistics",
+        "section": "Think beyond the standard parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "global-map",
+    "url": "/assets/optimized/global-map.webp",
+    "title": "global map",
+    "pages": [
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/coverage",
+        "section": "Where will your next parcel go?",
+        "anchor": ""
+      },
+      {
+        "page": "/contact",
+        "section": "Local roots. Global possibilities.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "clothes-gifts",
+    "url": "/assets/optimized/clothes-gifts.webp",
+    "title": "clothes gifts",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "documents-parcels",
+    "url": "/assets/optimized/documents-parcels.webp",
+    "title": "documents parcels",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "packed-foods",
+    "url": "/assets/optimized/packed-foods.webp",
+    "title": "packed foods",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "medicines",
+    "url": "/assets/optimized/medicines.webp",
+    "title": "medicines",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "decor",
+    "url": "/assets/optimized/decor.webp",
+    "title": "decor",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "cosmetics",
+    "url": "/assets/optimized/cosmetics.webp",
+    "title": "cosmetics",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "electronics",
+    "url": "/assets/optimized/electronics.webp",
+    "title": "electronics",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "liquids-oils",
+    "url": "/assets/optimized/liquids-oils.webp",
+    "title": "liquids oils",
+    "pages": [
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      }
+    ],
+    "placements": [
+      {
+        "page": "/industries",
+        "section": "Your world, inside a parcel.",
+        "anchor": ""
+      }
+    ]
+  },
+  {
+    "id": "logo-cursor",
+    "url": "/assets/icons/logo-cursor.png",
+    "title": "Mouse cursor",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      },
+      {
+        "path": "/about",
+        "title": "About 3A Logistics — People, Packages, Possibilities"
+      },
+      {
+        "path": "/services",
+        "title": "Courier & Logistics Services — 3A Logistics"
+      },
+      {
+        "path": "/services/domestic",
+        "title": "Domestic Courier Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/services/international",
+        "title": "International Courier Services — 3A Logistics"
+      },
+      {
+        "path": "/services/express",
+        "title": "Express Courier Delivery — 3A Logistics"
+      },
+      {
+        "path": "/services/business",
+        "title": "Business & Corporate Shipping — 3A Logistics"
+      },
+      {
+        "path": "/services/logistics",
+        "title": "Logistics Solutions & Enquiries — 3A Logistics"
+      },
+      {
+        "path": "/coverage",
+        "title": "International Coverage & Office Network — 3A Logistics"
+      },
+      {
+        "path": "/industries",
+        "title": "Industries & Shipment Types — 3A Logistics"
+      },
+      {
+        "path": "/careers",
+        "title": "Careers & Opportunities — 3A Logistics"
+      },
+      {
+        "path": "/contact",
+        "title": "Contact 3A Logistics — Courier Enquiries & Offices"
+      },
+      {
+        "path": "/quote",
+        "title": "Request a Shipping Quote"
+      },
+      {
+        "path": "/404",
+        "title": "Page not found"
+      }
+    ]
+  }
+]
