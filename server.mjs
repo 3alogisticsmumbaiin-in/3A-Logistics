@@ -2,6 +2,7 @@ import http from 'node:http';
 import {readFile,stat} from 'node:fs/promises';
 import path from 'node:path';
 import {createCMS} from './cms.mjs';
+import {lookupShipment} from './tracking-db.mjs';
 const root=process.cwd();
 try{process.loadEnvFile?.(path.join(root,'.env'));}catch(error){if(error.code!=='ENOENT')throw error;}
 if(process.env.NODE_ENV==='production'){
@@ -12,14 +13,33 @@ const cms=await createCMS(root);
 const publicRoot=path.join(root,'dist');
 await stat(path.join(publicRoot,'index.html')); // A production service must have a completed public build.
 const port=Number(process.env.PORT)||4173;
+const trackingAttempts=new Map();
+function limited(ip){
+ const now=Date.now();const previous=trackingAttempts.get(ip);
+ const entry=previous&&previous.until>now?previous:{count:0,until:now+60000};
+ entry.count++;trackingAttempts.set(ip,entry);
+ if(trackingAttempts.size>5000)for(const [key,value] of trackingAttempts)if(value.until<=now)trackingAttempts.delete(key);
+ return entry.count>30;
+}
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon'};
 http.createServer(async(req,res)=>{
  try {
-  const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+  const requestUrl=new URL(req.url,'http://localhost');
+  const pathname=decodeURIComponent(requestUrl.pathname);
   res.setHeader('X-Content-Type-Options','nosniff');
   res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
   res.setHeader('X-Frame-Options','DENY');
   if(pathname==='/healthz'&&req.method==='GET'){res.writeHead(200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end('{"ok":true}');return;}
+  if(pathname==='/api/tracking'&&req.method==='GET'){
+   const send=(status,data)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(data));};
+   if(limited(req.socket.remoteAddress||'')){send(429,{error:'Too many lookups. Please try again shortly.'});return;}
+   const awb=(requestUrl.searchParams.get('awb')||'').trim();
+   if(!awb||awb.length>200){send(400,{error:'Enter a valid tracking number.'});return;}
+   try{
+    send(200,{shipment:await lookupShipment(awb)});
+   }catch{send(503,{error:'Tracking is temporarily unavailable.'});}
+   return;
+  }
   if(await cms.handle(req,res,pathname))return;
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end('Method not allowed');return;}
   if(await cms.image(pathname,res,req))return;

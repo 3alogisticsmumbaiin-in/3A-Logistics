@@ -15,9 +15,13 @@ Required environment settings:
 NODE_ENV=production
 CMS_PUBLIC_URL=https://YOUR-SITE.onrender.com
 CMS_PASSWORD=your-unique-admin-password-of-at-least-12-characters
+MONGODB_TRACKING_URI=mongodb+srv://READ_ONLY_USER:ENCODED_PASSWORD@YOUR_CLUSTER.mongodb.net/
+MONGODB_TRACKING_DATABASE=3a_logistics
 ```
 
-Render supplies `PORT`. The server binds `0.0.0.0` in production. No disk, Google account connection, API credentials, database, Redis or paid storage is required. The release has no runtime npm dependencies. Use the canonical HTTPS address from `CMS_PUBLIC_URL` for admin access; it is also the allowed origin for CMS mutations.
+Render supplies `PORT`. The server binds `0.0.0.0` in production. No disk, Google account connection, Redis or paid storage is required. Shipment tracking uses MongoDB. Use the canonical HTTPS address from `CMS_PUBLIC_URL` for admin access; it is also the allowed origin for CMS mutations.
+
+For shipment tracking, create a dedicated MongoDB user with read access to the existing logistics database, allow the website host to connect to Atlas, and set `MONGODB_TRACKING_URI` and `MONGODB_TRACKING_DATABASE` in the website host's private environment settings. Without these settings, the website still runs, but `/tracking/` displays a temporary unavailable message when a visitor searches. Configure the local logistics app's **Website tracking page** as `https://3alogisticsindia.com/tracking/?awb={awb}` after deploying the website changes.
 
 ## Deploy the prepared release
 
