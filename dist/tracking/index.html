@@ -1,5 +1,35 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Track your shipment | 3A Logistics</title><meta name="description" content="Check the latest status of your 3A Logistics shipment."><link rel="icon" href="/assets/images/favicon.png"><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/tracking/tracking.css"><script defer src="/tracking/tracking.js"></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a><header class="track-header"><div class="track-wrap track-header-inner"><a href="/" aria-label="3A Logistics home"><img src="/assets/optimized/logo.webp" alt="3A Logistics" width="180" height="60"></a><nav aria-label="Main navigation"><a href="/">Home</a><a href="/services/">Services</a><a href="/contact/">Contact</a></nav></div></header>
-<main id="main" class="track-wrap"><section class="track-hero"><p class="track-eyebrow">SHIPMENT TRACKING</p><h1>Follow your parcel’s journey.</h1><p>Enter your 3A Booking Reference or Carrier AWB to see the latest update from our team.</p><form id="tracking-form" role="search"><label for="awb">Tracking number</label><div class="track-search"><input id="awb" name="awb" required maxlength="200" autocomplete="off" placeholder="3A Booking Reference or Carrier AWB"><button type="submit">Track shipment <span aria-hidden="true">→</span></button></div></form><p class="track-help">Status updates are recorded by our team. For help, <a href="/contact/">contact us</a>.</p></section><section id="tracking-result" class="track-result" aria-live="polite"></section></main>
-<footer class="track-footer"><div class="track-wrap"><span>© 2026 3A Logistics</span><a href="/contact/">Contact our team</a></div></footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Track your shipment | 3A Logistics</title>
+  <meta name="description" content="Check the latest status of your 3A Logistics shipment.">
+  <link rel="icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/tracking/tracking.css">
+  <script defer src="/tracking/tracking.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="track-stage">
+    <header class="track-header track-wrap">
+      <a class="track-logo" href="/" aria-label="3A Logistics home"><img src="/assets/optimized/logo.webp" alt="3A Logistics" width="150" height="50"></a>
+      <button class="track-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="track-nav"><span></span><span></span><span></span></button>
+      <nav id="track-nav" class="track-nav" aria-label="Main navigation">
+        <a href="/">Home</a><a href="/about/">About us</a><a href="/services/">Services</a><a href="/coverage/">Coverage</a><a href="/services/business/">Business</a><a href="/contact/">Contact</a>
+      </nav>
+      <a class="track-quote" href="/quote/">Get a quote <span aria-hidden="true">↗</span></a>
+    </header>
+    <section class="track-hero track-wrap" aria-labelledby="track-title">
+      <div class="track-hero-copy"><p class="track-eyebrow"><span aria-hidden="true"></span> 3A LOGISTICS · WORLDWIDE COURIER</p><h1 id="track-title">Your shipment.<br><em>Every step.</em></h1><p>See the latest update on your parcel, wherever its journey takes it.</p><div class="track-hero-points"><span>Local care</span><span>Global reach</span><span>Personal support</span></div></div>
+      <div class="track-hero-art" aria-hidden="true"><div class="track-orbit"></div><img class="track-plane" src="/assets/images/hero-motion-plane.webp" alt=""><img class="track-truck" src="/assets/images/hero-motion-truck.webp" alt=""><div class="track-parcel">3A<span>LOGISTICS</span></div><span class="track-art-dot dot-one"></span><span class="track-art-dot dot-two"></span></div>
+    </section>
+  </div>
+  <main id="main">
+    <section class="track-search-section" aria-labelledby="track-search-title"><div class="track-wrap track-search-inner"><div class="track-search-copy"><span class="track-search-icon" aria-hidden="true">▣</span><div><h2 id="track-search-title">Track your shipment</h2><p>Enter your AWB or tracking number to check the latest status.</p></div></div><form id="tracking-form" class="track-form" role="search"><label class="sr-only" for="awb">3A Booking Reference or Carrier AWB</label><div class="track-input-wrap"><span aria-hidden="true">⌕</span><input id="awb" name="awb" type="search" required maxlength="200" autocomplete="off" placeholder="Enter AWB / tracking number"></div><button type="submit">Track shipment <span aria-hidden="true">→</span></button></form></div></section>
+    <section class="track-results-wrap track-wrap" aria-label="Tracking results"><div id="tracking-result" class="track-result" aria-live="polite"><div class="track-intro"><span class="track-intro-mark" aria-hidden="true">↗</span><div><h2>Follow your parcel with confidence.</h2><p>Enter your tracking number above to see the latest status and recorded updates.</p></div></div></div><p class="track-help">Need help with a shipment? <a href="/contact/">Contact our team</a>.</p></section>
+  </main>
+  <footer class="track-footer"><div class="track-wrap"><span>© 2026 3A Logistics</span><a href="/contact/">Contact our team</a></div></footer>
+</body>
+</html>

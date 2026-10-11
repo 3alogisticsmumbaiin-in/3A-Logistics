@@ -949,3 +949,25 @@ body .site-footer.footer-editorial{border-radius:var(--curve-panel) var(--curve-
  html:not(.js) body .site-header.glass-header .nav>a:not(.mobile-quote),html:not(.js) body .site-header.glass-header .nav-services>a{height:44px;padding:0 10px;font-size:12px}
  html:not(.js) body .site-header.glass-header .menu-btn,html:not(.js) body .site-header.glass-header .dropdown-toggle,html:not(.js) body .site-header.glass-header .mobile-quote{display:none}
 }
+
+/* Public shipment search sits directly below the home hero. */
+.hp-tracking-entry{background:linear-gradient(105deg,#f9fcff,#eaf4fc 52%,#f9fcff);border-block:1px solid #dceaf4}
+.hp-tracking-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,650px);align-items:center;gap:32px;min-height:116px;padding-block:18px}
+.hp-tracking-copy{display:flex;align-items:center;gap:18px;min-width:0}
+.hp-tracking-icon{flex:none;display:grid;place-items:center;width:66px;height:66px;border-right:1px solid #c7d9e7;padding-right:16px}
+.hp-tracking-icon svg{width:46px;height:46px}
+.hp-tracking-copy h2{margin:0 0 4px;color:var(--navy);font-size:clamp(22px,1.7vw,28px);font-weight:800;line-height:1.2;letter-spacing:-.03em}
+.hp-tracking-copy p{margin:0;color:#45627b;font-size:14px;line-height:1.5}
+.hp-tracking-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+.hp-tracking-input{display:flex;align-items:center;gap:11px;min-width:0;height:55px;padding:0 15px;background:#fff;border:1px solid #b9d1e4;border-radius:14px;box-shadow:0 5px 16px #0a3d6410}
+.hp-tracking-input:focus-within{outline:3px solid #acd8f3;outline-offset:2px}
+.hp-tracking-input svg{flex:none;width:22px;height:22px;color:#68839b}
+.hp-tracking-input input{width:100%;min-width:0;height:100%;padding:0;border:0;outline:0;background:transparent;color:var(--navy);font:inherit;font-size:14px}
+.hp-tracking-input input::placeholder{color:#7891a7;opacity:1}
+.hp-tracking-form button{display:flex;align-items:center;justify-content:center;gap:22px;min-height:55px;padding:0 25px;border:1px solid #f5ba14;border-radius:999px;background:#ffc72c;color:#071f35;font:inherit;font-size:14px;font-weight:700;white-space:nowrap;cursor:pointer;box-shadow:inset 0 1px 0 #fff9,0 7px 20px #ffc72c26;transition:transform .2s,background .2s,box-shadow .2s}
+.hp-tracking-form button:hover{background:#ffd44f;transform:translateY(-2px);box-shadow:0 10px 24px #dcae3150}
+.hp-tracking-form button:focus-visible{outline:3px solid #0754ad;outline-offset:3px}
+.hp-tracking-form button:active{transform:translateY(0)}
+@media(max-width:1050px){.hp-tracking-inner{grid-template-columns:1fr;gap:16px;padding-block:22px}.hp-tracking-form{max-width:760px}}
+@media(max-width:600px){.hp-tracking-inner{gap:17px;padding-block:24px}.hp-tracking-copy{align-items:flex-start;gap:13px}.hp-tracking-icon{width:47px;height:48px;padding-right:10px}.hp-tracking-icon svg{width:36px;height:36px}.hp-tracking-copy h2{font-size:22px}.hp-tracking-copy p{font-size:13px}.hp-tracking-form{grid-template-columns:1fr;gap:10px}.hp-tracking-input,.hp-tracking-form button{min-height:54px;width:100%}.hp-tracking-input input{font-size:16px}.hp-tracking-form button{border-radius:14px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.hp-tracking-form button{transition:none}}
