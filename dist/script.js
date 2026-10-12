@@ -175,6 +175,8 @@ document.addEventListener('click',event=>{
   if(!link||event.defaultPrevented||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||link.target||link.hasAttribute('download'))return;
   const url=new URL(link.href,location.href);
   if(url.origin!==location.origin||!/^https?:$/.test(url.protocol))return;
+  // The tracking page has its own lookup script and page stylesheet.
+  if(/^\/tracking(?:\/|$)/.test(url.pathname)||/^\/tracking(?:\/|$)/.test(location.pathname))return;
   if(url.pathname===location.pathname&&url.search===location.search){
     if(url.hash)return;
     event.preventDefault();setMenu(false);window.scrollTo({top:0,behavior:reducedMotion.matches?'instant':'smooth'});return;
