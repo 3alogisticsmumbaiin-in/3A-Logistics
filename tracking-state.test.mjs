@@ -32,21 +32,32 @@ test('progress maps actual known statuses and never treats failed delivery as de
   assert.deepEqual(shipmentProgress('Custom status'), {stage: -1, tone: 'normal', terminal: false});
 });
 
-test('history is newest first without mutating input or inventing missing events', () => {
+test('history runs from booking to the newest update without mutating input or inventing events', () => {
   const history = [
     {status: 'Delivered', date: '2026-10-23', time: '15:00'},
     {status: 'Booked', date: '2026-10-21', time: '09:00'},
     {status: 'In transit', date: '2026-10-23', time: '08:00'}
   ];
   const snapshot = structuredClone(history);
-  assert.deepEqual(orderedHistory(history).map(item => item.status), ['Delivered', 'In transit', 'Booked']);
+  assert.deepEqual(orderedHistory(history).map(item => item.status), ['Booked', 'In transit', 'Delivered']);
   assert.deepEqual(history, snapshot);
   assert.deepEqual(orderedHistory([]), []);
-  assert.deepEqual(orderedHistory([{status: 'Booked'}, {status: 'In transit'}]).map(item => item.status), ['In transit', 'Booked']);
+  assert.deepEqual(orderedHistory([{status: 'Booked'}, {status: 'In transit'}]).map(item => item.status), ['Booked', 'In transit']);
 });
 
 test('last updated uses recorded dates, safely handles absent history and does not infer an ETA', () => {
   assert.deepEqual(latestShipmentUpdate({bookingDate: '2026-10-21', history: []}), {date: '2026-10-21', time: '', text: '21 Oct 2026'});
   assert.equal(latestShipmentUpdate({bookingDate: '2026-02-31'}).text, 'Not available yet');
   assert.equal(latestShipmentUpdate({history: [{status: 'Booked', date: '2026-10-21'}, {status: 'In transit', date: '2026-10-22', time: '16:30'}]}).text, '22 Oct 2026, 04:30 PM');
+});
+
+test('last updated stays newest when the displayed journey is chronological, unsorted or partially undated', () => {
+  const history = [
+    {status: 'In Transit', date: '2026-10-22', time: '22:18'},
+    {status: 'Booked', date: '2026-10-21'},
+    {status: 'Processing', date: '2026-10-22', time: '08:00'},
+    {status: 'Undated update'}
+  ];
+  assert.equal(latestShipmentUpdate({history}).text, '22 Oct 2026, 10:18 PM');
+  assert.deepEqual(orderedHistory(history.slice(0, 3)).map(item => item.status), ['Booked', 'Processing', 'In Transit']);
 });

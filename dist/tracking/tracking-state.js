@@ -34,12 +34,12 @@ export function orderedHistory(history) {
   const events = history.filter(event => event && typeof event.status === 'string' && event.status.trim())
     .map(event => ({status: event.status.trim(), date: typeof event.date === 'string' ? event.date : '', time: typeof event.time === 'string' ? event.time : ''}));
   // Undated events have no reliable position on a calendar. Preserve their recorded order.
-  if (!events.every(event => validDate(event.date))) return events.reverse();
+  if (!events.every(event => validDate(event.date))) return events;
   return events.map((event, index) => ({event, index})).sort((a, b) => {
-    const dateOrder = b.event.date.localeCompare(a.event.date);
+    const dateOrder = a.event.date.localeCompare(b.event.date);
     const aTime = timeParts(a.event.time);
     const bTime = timeParts(b.event.time);
-    return dateOrder || ((bTime?.hour || 0) * 60 + (bTime?.minute || 0)) - ((aTime?.hour || 0) * 60 + (aTime?.minute || 0)) || b.index - a.index;
+    return dateOrder || ((aTime?.hour || 0) * 60 + (aTime?.minute || 0)) - ((bTime?.hour || 0) * 60 + (bTime?.minute || 0)) || a.index - b.index;
   }).map(item => item.event);
 }
 
@@ -59,7 +59,8 @@ export function shipmentProgress(status) {
 }
 
 export function latestShipmentUpdate(shipment) {
-  const event = orderedHistory(shipment?.history).find(item => validDate(item.date));
+  const datedEvents = Array.isArray(shipment?.history) ? shipment.history.filter(item => validDate(item?.date)) : [];
+  const event = orderedHistory(datedEvents).at(-1);
   const date = event?.date || (validDate(shipment?.bookingDate) ? shipment.bookingDate : '');
   return {date, time: event?.time || '', text: [formatDate(date), formatTime(event?.time)].filter(Boolean).join(', ') || 'Not available yet'};
 }
