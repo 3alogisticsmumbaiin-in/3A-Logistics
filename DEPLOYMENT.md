@@ -21,7 +21,7 @@ MONGODB_TRACKING_DATABASE=3a_logistics
 
 Render supplies `PORT`. The server binds `0.0.0.0` in production. No disk, Google account connection, Redis or paid storage is required. Shipment tracking uses MongoDB. Use the canonical HTTPS address from `CMS_PUBLIC_URL` for admin access; it is also the allowed origin for CMS mutations.
 
-For shipment tracking, create a dedicated MongoDB user with read access to the existing logistics database, allow the website host to connect to Atlas, and set `MONGODB_TRACKING_URI` and `MONGODB_TRACKING_DATABASE` in the website host's private environment settings. Without these settings, the website still runs, but `/tracking/` displays a temporary unavailable message when a visitor searches. Configure the local logistics app's **Website tracking page** as `https://3alogisticsindia.com/tracking/?awb={awb}` after deploying the website changes.
+For shipment tracking, create a dedicated MongoDB user with read access to the existing logistics database, allow the website host to connect to Atlas, and set `MONGODB_TRACKING_URI` and `MONGODB_TRACKING_DATABASE` in the website host's private environment settings. Without these settings, the website still runs, but `/tracking/` displays a temporary unavailable message when a visitor searches. Public tracking accepts only the Carrier AWB stored in `body.barcode`, for example `https://3alogisticsindia.com/tracking/?awb=3A40006`. When configuring the local logistics app's **Website tracking page**, use its verified Carrier AWB template field; do not substitute the private internal booking reference. Bookings without a Carrier AWB are not publicly searchable.
 
 ## Deploy the prepared release
 

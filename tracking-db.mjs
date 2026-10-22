@@ -14,28 +14,51 @@ async function collection(){
  return connection;
 }
 
+function publicText(value,fallback=''){
+ return typeof value==='string'?value.trim():fallback;
+}
+
+function carrierNumber(value){
+ const number=publicText(value);
+ return number&&number.length<=200&&!/[\u0000-\u001f\u007f]/.test(number)?number:'';
+}
+
 export function publicShipment(booking){
- const history=Array.isArray(booking.history)?booking.history.filter(item=>item&&typeof item.status==='string').slice(-50).map(item=>({
-  status:item.status,
-  date:typeof item.date==='string'?item.date:'',
-  time:typeof item.time==='string'?item.time:''
+ if(!booking||typeof booking!=='object'||Array.isArray(booking))return null;
+ const trackingNumber=carrierNumber(booking.barcode);
+ if(!trackingNumber)return null;
+ const history=Array.isArray(booking.history)?booking.history.filter(item=>item&&typeof item==='object'&&!Array.isArray(item)&&publicText(item.status)).slice(-50).map(item=>({
+  status:publicText(item.status),
+  date:publicText(item.date),
+  time:publicText(item.time)
  })):[];
  return {
-  reference:booking.awb||'',
-  trackingNumber:booking.barcode||'',
-  status:booking.status||'Booked',
-  origin:booking.origin||'',
-  destination:booking.destination||'',
-  bookingDate:booking.date||'',
-  expectedDeliveryDate:booking.expectedDeliveryDate||'',
+  trackingNumber,
+  status:publicText(booking.status)||'Booked',
+  origin:publicText(booking.origin),
+  destination:publicText(booking.destination),
+  bookingDate:publicText(booking.date),
+  expectedDeliveryDate:publicText(booking.expectedDeliveryDate),
   history
  };
 }
 
 export async function lookupShipment(reference, getCollection=collection){
- const number=String(reference||'').trim();
- if(!number||number.length>200)return null;
- const records=await (await getCollection()).find({collection:'bookings',deleted:0,$or:[{'body.awb':number},{'body.barcode':number}]},{collation:{locale:'en',strength:2},projection:{body:1},maxTimeMS:5000}).limit(2).toArray();
+ const number=carrierNumber(reference);
+ if(!number)return null;
+ const projection={
+  _id:0,
+  'body.barcode':1,
+  'body.status':1,
+  'body.origin':1,
+  'body.destination':1,
+  'body.date':1,
+  'body.expectedDeliveryDate':1,
+  'body.history.status':1,
+  'body.history.date':1,
+  'body.history.time':1
+ };
+ const records=await (await getCollection()).find({collection:'bookings',deleted:0,'body.barcode':number},{collation:{locale:'en',strength:2},projection,maxTimeMS:5000}).limit(2).toArray();
  if(records.length!==1)return null;
- return publicShipment(records[0].body||{});
+ return publicShipment(records[0].body);
 }

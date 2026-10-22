@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.mjs",
-    "test": "node --test tracking-db.test.mjs"
+    "test": "node --test tracking-db.test.mjs tracking-state.test.mjs"
   },
   "dependencies": {
     "mongodb": "7.6.0"

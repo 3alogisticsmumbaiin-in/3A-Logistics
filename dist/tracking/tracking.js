@@ -1,3 +1,5 @@
+import {formatDate, formatTime, validDate, publicTrackingNumber, orderedHistory, shipmentProgress, latestShipmentUpdate} from './tracking-state.js?v=4';
+
 const form = document.querySelector('#tracking-form');
 const input = document.querySelector('#tracking-reference');
 const search = document.querySelector('#tracking-search');
@@ -6,32 +8,22 @@ const result = document.querySelector('#tracking-result');
 const timeline = document.querySelector('#tracking-timeline');
 const details = document.querySelector('#tracking-details');
 const button = form.querySelector('button');
-const dateFormatter = new Intl.DateTimeFormat('en-GB', {day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC'});
-const icons = {
-  truck: '<svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h19v18H3zM22 14h6l5 6v6H22z"/><circle cx="10" cy="27" r="3"/><circle cx="27" cy="27" r="3"/></svg>',
-  dispatch: '<svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h26v22H5zM11 10V6h14v4M5 16h26M11 20v6h14v-6M14 20h8"/></svg>',
-  facility: '<svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15 18 6l15 9v17H3zM8 15h20M11 32V21h14v11M15 26h6"/></svg>',
-  box: '<svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 3 14 8v16l-14 8L4 27V11zM4 11l14 8 14-8M18 19v16M11 7l14 8"/></svg>'
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const baseTitle = 'Track Your Shipment | 3A Logistics';
+const detailIcons = {
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>',
+  document: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h6"/></svg>'
 };
 let pending;
 
-function showMessage(text) {
+function showMessage(text, isError = false) {
   message.textContent = text;
   message.hidden = !text;
+  message.classList.toggle('is-error', isError);
 }
 
-function formatDate(value) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return '';
-  const date = new Date(`${value}T12:00:00Z`);
-  return Number.isNaN(date.getTime()) ? '' : dateFormatter.format(date);
-}
-
-function formatTime(value) {
-  const time = String(value || '').trim();
-  const match = /^([01]?\d|2[0-3]):([0-5]\d)(?::[0-5]\d)?$/.exec(time);
-  if (!match) return time;
-  const hour = Number(match[1]);
-  return `${String(hour % 12 || 12).padStart(2, '0')}:${match[2]} ${hour < 12 ? 'AM' : 'PM'}`;
+function setUrl(number = '') {
+  window.history.replaceState(null, '', `${window.location.pathname}${number ? `?awb=${encodeURIComponent(number)}` : ''}`);
 }
 
 function addText(parent, tag, className, value) {
@@ -42,121 +34,180 @@ function addText(parent, tag, className, value) {
   return node;
 }
 
-function iconFor(status) {
-  if (/transit|delivered|delivery/i.test(status)) return icons.truck;
-  if (/dispatch|pickup|collected/i.test(status)) return icons.dispatch;
-  if (/process|sort|facility|hub/i.test(status)) return icons.facility;
-  return icons.box;
+function renderProgress(status) {
+  const state = shipmentProgress(status);
+  const progress = document.querySelector('#tracking-progress');
+  progress.style.setProperty('--progress', `${state.stage < 0 ? 0 : state.stage / 3 * 100}%`);
+  for (const step of progress.querySelectorAll('[data-stage]')) {
+    const index = Number(step.dataset.stage);
+    step.classList.toggle('is-complete', state.stage > index);
+    step.classList.toggle('is-current', state.stage === index);
+    if (state.stage === index) step.setAttribute('aria-current', 'step');
+    else step.removeAttribute('aria-current');
+  }
+  document.querySelector('#progress-caption').textContent = state.stage < 0 ? `Status: ${status}` : `${status} · Step ${state.stage + 1} of 4`;
+  progress.classList.toggle('has-known-stage', state.stage >= 0);
+  document.querySelector('#journey-next').hidden = state.terminal;
+  return state;
 }
 
-function renderShipment(shipment, reference) {
-  const events = Array.isArray(shipment.history) ? shipment.history : [];
-  const ordered = events.filter(event => event && typeof event === 'object').reverse();
-  const displayedReference = String(shipment.reference || shipment.trackingNumber || reference);
-  document.querySelector('#result-reference').textContent = displayedReference;
-  const status = String(shipment.status || '');
+function renderShipment(shipment) {
+  const number = publicTrackingNumber(shipment);
+  if (!number) throw new Error('No shipment was found for that Carrier AWB. Please check it and try again.');
+  const status = typeof shipment.status === 'string' && shipment.status.trim() ? shipment.status.trim() : 'Booked';
+  const heading = document.querySelector('#result-reference');
+  heading.textContent = number;
+  const state = renderProgress(status);
   const badge = document.querySelector('#result-status');
   badge.textContent = status;
-  badge.hidden = !status;
-  badge.classList.toggle('is-active', /transit|out for delivery/i.test(status));
-  badge.classList.toggle('is-delivered', /^delivered$/i.test(status));
-  const latest = ordered.find(event => formatDate(event.date));
-  const updatedDate = formatDate(latest?.date || shipment.bookingDate);
-  const updatedTime = formatTime(latest?.time);
+  badge.hidden = false;
+  badge.classList.toggle('is-delivered', state.tone === 'delivered');
+  badge.classList.toggle('is-attention', state.tone === 'attention');
+  const update = latestShipmentUpdate(shipment);
   const updatedNode = document.querySelector('#result-updated');
-  updatedNode.textContent = [updatedDate, updatedTime].filter(Boolean).join(', ') || 'Not available';
-  if (latest?.date && updatedDate) updatedNode.dateTime = latest.date;
+  updatedNode.textContent = update.text;
+  if (update.date) updatedNode.dateTime = update.date;
   else updatedNode.removeAttribute('datetime');
 
+  document.querySelector('#route-origin').textContent = typeof shipment.origin === 'string' && shipment.origin.trim() ? shipment.origin : 'Not available';
+  document.querySelector('#route-destination').textContent = typeof shipment.destination === 'string' && shipment.destination.trim() ? shipment.destination : 'Not available';
+
+  const events = orderedHistory(shipment.history);
   timeline.replaceChildren();
-  document.querySelector('#tracking-empty').hidden = ordered.length > 0;
-  for (const event of ordered) {
+  document.querySelector('#tracking-empty').hidden = events.length > 0;
+  for (const event of events) {
     const item = document.createElement('li');
     item.className = 'tracking-event';
-    item.classList.toggle('has-details', Boolean(event.description || event.location));
     const marker = addText(item, 'span', 'tracking-marker', '✓');
     marker.setAttribute('aria-hidden', 'true');
-    const icon = addText(item, 'span', 'tracking-event-icon', '');
-    icon.setAttribute('aria-hidden', 'true');
-    icon.innerHTML = iconFor(String(event.status || ''));
     const body = addText(item, 'div', 'tracking-event-copy', '');
-    addText(body, 'h2', '', String(event.status || 'Shipment update'));
-    if (event.description) addText(body, 'p', 'tracking-description', String(event.description));
-    if (event.location) addText(body, 'p', 'tracking-location', String(event.location));
+    addText(body, 'h3', '', event.status);
     const date = formatDate(event.date);
     const time = formatTime(event.time);
     if (date || time) {
-      const timeNode = addText(item, 'time', 'tracking-event-time', '');
-      if (date) addText(timeNode, 'span', '', date);
-      if (time) addText(timeNode, 'span', '', time);
-      if (date) timeNode.dateTime = event.date;
+      const timeNode = addText(item, 'time', 'tracking-event-time', [date, time].filter(Boolean).join(', '));
+      if (validDate(event.date)) timeNode.dateTime = event.date;
     }
     timeline.append(item);
   }
 
   details.replaceChildren();
   const fields = [
-    ['Origin', shipment.origin],
-    ['Destination', shipment.destination],
-    ['Carrier AWB', shipment.trackingNumber && shipment.trackingNumber !== displayedReference ? shipment.trackingNumber : ''],
-    ['Booked', formatDate(shipment.bookingDate)],
-    ['Expected delivery', formatDate(shipment.expectedDeliveryDate)]
+    ['Booked on', formatDate(shipment.bookingDate) || 'Not available yet', 'calendar'],
+    ['Delivery estimate', formatDate(shipment.expectedDeliveryDate) || 'Not available yet', 'document']
   ];
-  for (const [label, value] of fields) {
-    if (!value) continue;
+  for (const [label, value, icon] of fields) {
     const group = document.createElement('div');
+    const picture = addText(group, 'span', 'detail-icon', '');
+    picture.innerHTML = detailIcons[icon];
     addText(group, 'dt', '', label);
-    addText(group, 'dd', '', String(value));
+    addText(group, 'dd', '', value);
     details.append(group);
   }
-  details.hidden = !details.childElementCount;
-  result.hidden = false;
+  // Never carry an internal booking identifier through the URL, title or form.
+  input.value = number;
+  setUrl(number);
+  document.title = `Tracking ${number} | 3A Logistics`;
   search.hidden = true;
-  document.title = `Tracking ${displayedReference} | 3A Logistics`;
-  document.querySelector('#result-reference').focus({preventScroll: true});
+  result.hidden = false;
+  result.classList.remove('is-visible');
+  window.requestAnimationFrame(() => result.classList.add('is-visible'));
+  heading.focus({preventScroll: true});
 }
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
-  const reference = input.value.trim();
-  input.value = reference;
-  if (!form.reportValidity()) return;
+  const number = input.value.trim();
+  input.value = number;
+  if (!number || number.length > 200 || /[\u0000-\u001f\u007f]/.test(number) || !form.reportValidity()) {
+    showMessage('Enter a valid Carrier AWB from your consignment note.', true);
+    return;
+  }
   pending?.abort();
-  pending = new AbortController();
-  const signal = pending.signal;
+  const controller = new AbortController();
+  pending = controller;
+  const timeout = window.setTimeout(() => controller.abort('timeout'), 20000);
   result.hidden = true;
   search.hidden = false;
+  document.title = baseTitle;
+  setUrl();
+  form.setAttribute('aria-busy', 'true');
   showMessage('Looking up your shipment…');
   button.disabled = true;
-  window.history.replaceState(null, '', `${window.location.pathname}?awb=${encodeURIComponent(reference)}`);
   try {
-    const response = await fetch(`/api/tracking?awb=${encodeURIComponent(reference)}`, {signal, cache: 'no-store', headers: {Accept: 'application/json'}, credentials: 'omit'});
+    const response = await fetch(`/api/tracking?awb=${encodeURIComponent(number)}`, {
+      signal: controller.signal, cache: 'no-store', headers: {Accept: 'application/json'}, credentials: 'omit'
+    });
     if (!response.headers.get('content-type')?.includes('application/json')) throw new Error('Tracking is temporarily unavailable. Please try again later.');
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Tracking is temporarily unavailable. Please try again later.');
-    if (!data.shipment) throw new Error('No shipment was found for that tracking number. Please check it and try again.');
-    renderShipment(data.shipment, reference);
+    if (pending !== controller || controller.signal.aborted) return;
+    if (!data || typeof data !== 'object') throw new Error('Tracking is temporarily unavailable. Please try again later.');
+    if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : 'Tracking is temporarily unavailable. Please try again later.');
+    if (!data.shipment) throw new Error('No shipment was found for that Carrier AWB. Please check it and try again.');
+    renderShipment(data.shipment);
     showMessage('');
   } catch (error) {
-    if (error.name !== 'AbortError') showMessage(error.message);
+    if (pending !== controller) return;
+    if (controller.signal.aborted) {
+      if (controller.signal.reason === 'timeout') showMessage('The lookup took too long. Please try again.', true);
+    } else showMessage(error instanceof Error ? error.message : 'Tracking is temporarily unavailable. Please try again later.', true);
   } finally {
-    if (!signal.aborted) button.disabled = false;
+    window.clearTimeout(timeout);
+    if (pending === controller) {
+      pending = undefined;
+      button.disabled = false;
+      form.removeAttribute('aria-busy');
+    }
   }
 });
 
 document.querySelector('#track-another').addEventListener('click', () => {
+  pending?.abort();
+  pending = undefined;
+  button.disabled = false;
+  form.removeAttribute('aria-busy');
   result.hidden = true;
   search.hidden = false;
   showMessage('');
   input.value = '';
-  document.title = 'Track Your Shipment | 3A Logistics';
-  window.history.replaceState(null, '', window.location.pathname);
-  search.scrollIntoView({behavior: 'smooth', block: 'start'});
+  document.title = baseTitle;
+  setUrl();
+  search.scrollIntoView({behavior: reducedMotion.matches ? 'auto' : 'smooth', block: 'start'});
   input.focus({preventScroll: true});
 });
 
-const initialReference = new URLSearchParams(window.location.search).get('awb');
-if (initialReference) {
-  input.value = initialReference.trim();
+const menu = document.querySelector('#tracking-menu');
+const nav = document.querySelector('#tracking-nav');
+function closeMenu() {
+  menu.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-label', 'Open menu');
+  nav.classList.remove('is-open');
+}
+menu.addEventListener('click', () => {
+  const open = menu.getAttribute('aria-expanded') !== 'true';
+  menu.setAttribute('aria-expanded', String(open));
+  menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  nav.classList.toggle('is-open', open);
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') {
+    closeMenu();
+    menu.focus();
+  }
+});
+document.addEventListener('click', event => {
+  if (!nav.contains(event.target) && !menu.contains(event.target)) closeMenu();
+});
+nav.addEventListener('click', event => {
+  if (event.target.closest('a')) closeMenu();
+});
+window.matchMedia('(min-width: 641px)').addEventListener('change', event => {
+  if (event.matches) closeMenu();
+});
+
+const initialNumber = new URLSearchParams(window.location.search).get('awb');
+if (initialNumber) {
+  input.value = initialNumber.trim();
+  setUrl();
   form.requestSubmit();
 }

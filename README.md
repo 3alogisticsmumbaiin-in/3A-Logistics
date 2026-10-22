@@ -17,7 +17,9 @@ See [IMAGE_MANAGER.md](IMAGE_MANAGER.md) and [DEPLOYMENT.md](DEPLOYMENT.md). The
 
 ## Shipment tracking
 
-The public page is `/tracking/`. It accepts a 3A Booking Reference or Carrier AWB and shows status, route, dates, and status history. The website server reads the existing MongoDB database; the local logistics app can stay on your computer. The browser never receives database credentials.
+The public page is `/tracking/`. Customers enter their Carrier AWB (consignment number) to see status, route, dates, and status history. The website server reads the existing MongoDB database; the local logistics app can stay on your computer. The browser never receives database credentials or the internal booking reference.
+
+Tracking reads the `records` collection in the configured database, matches active documents with `collection: "bookings"` and `deleted: 0`, and searches only `body.barcode` (Carrier AWB). Internal `body.awb` references are excluded from the database projection and public response. A booking without a valid Carrier AWB, an unknown number, or multiple active matches returns no shipment. Carrier AWB matching is case-insensitive.
 
 Set these private environment variables on the website service:
 
@@ -26,4 +28,4 @@ MONGODB_TRACKING_URI=mongodb+srv://READ_ONLY_USER:ENCODED_PASSWORD@YOUR_CLUSTER.
 MONGODB_TRACKING_DATABASE=3a_logistics
 ```
 
-Create a dedicated MongoDB database user with **read** access to this database only, and allow the website host to reach MongoDB Atlas. Keep the URI in the host's private environment settings, never in Git or browser code. Then set **Company details → Website tracking page** in the logistics app to `https://3alogisticsindia.com/tracking/?awb={awb}`. Check a real booking and an unknown number before sending links to clients.
+Create a dedicated MongoDB database user with **read** access to this database only, and allow the website host to reach MongoDB Atlas. Keep the URI in the host's private environment settings, never in Git or browser code. Configure **Company details → Website tracking page** in the logistics app to generate links using its Carrier AWB field, for example `https://3alogisticsindia.com/tracking/?awb=3A40006`. The URL parameter remains `awb`, but its value must be the Carrier AWB rather than the internal booking reference. Verify the app's supported Carrier AWB template placeholder before configuring automatic links. Check a real Carrier AWB and an unknown number before sending links to clients.
